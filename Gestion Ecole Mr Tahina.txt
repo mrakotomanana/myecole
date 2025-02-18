@@ -1,0 +1,79 @@
+- Paramétrage
+	- Etablissement
+		- Nom
+		- Slogan
+		- Devise
+	- Années scolaires
+		- Slogan / Objectif de l'année scolaire
+	- Gestion de toutes les matières (Un simple recensement de toutes les matières)
+		- Ajout / Modification / Archivage
+	- Classes
+		- Gestion des matières de chaque classe
+			- Ajout / Modification / Suppression
+			- Fixation de coéfficient de chaque matière pour chaque classe
+		- Gestion des groupes d'élèves
+			- Nombre d'étudiant par groupe
+			- Thématique
+			- Description
+			- Date de création
+			- Deadline
+			- Note
+			- Coéfficient
+		- Gestion des groupes de ménages
+			- Ajout / Modification / Archivage
+			- Nombre d'étudiants par groupe
+
+- Gestion des professeurs
+	- Ajout / Modification / Suppression (Archivage)
+	- Attribution des professeurs à des matières
+	- Gestion des présences
+	- Gestion des paies
+	- Gestion des emplois du temps (Disponibilité)
+
+- Gestion des étudiants
+	- Ajout / Modification / Suppression (Archivage)
+	- Gestion des notes
+		- Attribution des notes individuelle
+		- Attribution des notes par liste
+	- Gestion des groupes d'étudiants
+		- Répartition des étudiants dans les groupes
+		- Attribution de sujet par groupe
+		- Attribution des notes par groupe
+	- Etablissement des bulletins
+	- Gestion des correspondances
+	- Gestion des absences
+
+- Gestion Financière
+	- Entrées (Divers frais)
+		- Frais généraux par étudiant
+		- Frais de scolarité par étudiant
+			- Date de paiement
+			- Mois / Période payé
+	- Sorties (Bon de commande)
+
+- Espace Etudiante
+	- Consultation du profil
+		- Notes
+			- Par matière
+			- Par groupe
+			- Hebdomadaire / Mensuelle / Trimestrielle
+			- Total / Moyenne
+		- Bonification / Pénalisation
+		- Absences
+		- Boite de messagerie interne
+		- Mise à jour des informations personnelles mofifiables (adresse email, numéro de téléphone, adresse, ...)
+	- Consultation de l'emploi du temps
+	- Rendu des devoirs
+		- Liste des devoirs classés par matière, différenciation des divers états (nouveaux, faits, en retard, à refaire, ...)
+		- Rendu des devoirs
+			- QCM
+			- Question/Réponse
+			- Redaction
+			- Uploads de fichier (images, pdf, ...)
+			- Validation / Soumission d'un devoir
+
+- Espace parent d'élèves
+	- Consultation des profils de ses enfants
+	- Modification des informations mutables (Adresse email, adresse, contact, ...)
+	- Consultation de l'historique de paiement de divers frais
+	- Paiement en ligne
