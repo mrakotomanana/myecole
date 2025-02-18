@@ -1,5 +1,5 @@
 {
-    "watch": ["www", "app.js", "routes/", "database/", "views/**", "public/**"],
+    "watch": ["www", "app.js", "routes/", "database/", "views/**", "models/**", "public/**"],
     "ext": "js,json,ejs",
     "ignore": ["node_modules/"],
     "exec": "cross-env NODE_ENV=development node ./bin/www"

@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const db = require('../database/db');
 
-const etablissementSchema = new mongoose.Schema({
+const SchoolSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
     slogan: { type: String, required: true, unique: true },
-    devise: { type: String, required: true },
+    address: { type: String },
+    phone: { type: String },
 }, { timestamps: true });
 
-const Etablissement = db.model('Etablissement', etablissementSchema);
-module.exports = Etablissement;
+const School = db.model('School', SchoolSchema);
+module.exports = School;
