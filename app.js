@@ -9,6 +9,13 @@ var usersRouter = require('./routes/usersRoutes');
 var schoolRoutes = require('./routes/schoolRoutes');
 var schoolUserRoutes = require('./routes/schoolUserRoutes');
 const authRoutes = require("./routes/authRoutes");
+const classRoutes = require("./routes/classRoutes");
+const subjectRoutes = require("./routes/subjectRoutes");
+const courseRoutes = require("./routes/courseRoutes");
+const gradeRoutes = require("./routes/gradeRoutes");
+const scheduleRoutes = require("./routes/scheduleRoutes");
+const attendanceRoutes = require("./routes/attendanceRoutes");
+const feeRoutes = require("./routes/feeRoutes");
 
 var app = express();
 
@@ -22,11 +29,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use("/api/fees", feeRoutes);
+app.use("/api/attendances", attendanceRoutes);
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/school', schoolRoutes);
 app.use('/api/school-user', schoolUserRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/classes', classRoutes);
+app.use('/api/course', courseRoutes);
+app.use('/api/subject', subjectRoutes);
+app.use('/api/grades', gradeRoutes);
+app.use('/api/schedules', scheduleRoutes);
 
 app.use(function(req, res, next) {
   next(createError(404));

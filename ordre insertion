@@ -1,0 +1,147 @@
+1. Insertion d'une école (School)
+javascript
+Copier
+Modifier
+db.schools.insertOne({
+  schoolId: 1,
+  name: "Lycée International",
+  address: "123 Rue des Écoles, Paris",
+  phone: "+33 1 23 45 67 89"
+});
+🔹 2. Insertion d'un utilisateur (User)
+Un utilisateur peut être un admin, un enseignant ou un élève.
+
+javascript
+Copier
+Modifier
+db.users.insertMany([
+  {
+    name: "Jean Dupont",
+    email: "jean.dupont@example.com",
+    password: "hashed_password",
+    role: "admin",
+  },
+  {
+    name: "Sophie Martin",
+    email: "sophie.martin@example.com",
+    role: "teacher",
+    password: "hashed_password"
+  },
+  {
+    name: "Lucas Petit",
+    email: "lucas.petit@example.com",
+    role: "student",
+    password: "hashed_password"
+  }
+]);
+🔹 3. Associer les utilisateurs à une école (SchoolUser)
+Dans SchoolUser, on stocke l'association entre une école et ses utilisateurs.
+
+javascript
+Copier
+Modifier
+db.schoolUsers.insertMany([
+  { schoolId: 1, userId: ObjectId("ID_ADMIN"), role: "admin" },
+  { schoolId: 1, userId: ObjectId("ID_TEACHER"), role: "teacher" },
+  { schoolId: 1, userId: ObjectId("ID_STUDENT"), role: "student" }
+]);
+Remarque : Remplace ID_ADMIN, ID_TEACHER, ID_STUDENT par les id des utilisateurs insérés précédemment.
+
+🔹 4. Insertion d’une classe (Class)
+javascript
+Copier
+Modifier
+db.classes.insertOne({
+  name: "Terminale S",
+  schoolId: 1
+});
+🔹 5. Insertion d'une matière (Subject)
+javascript
+Copier
+Modifier
+db.subjects.insertMany([
+  { name: "Mathématiques", schoolId: 1 },
+  { name: "Physique", schoolId: 1 }
+]);
+🔹 6. Insertion d'un cours (Course)
+Chaque cours est lié à une matière et une classe.
+
+javascript
+Copier
+Modifier
+db.courses.insertOne({
+  name: "Algèbre avancée",
+  subjectId: ObjectId("ID_SUBJECT_MATHS"),
+  teacherId: ObjectId("ID_TEACHER"),
+  classId: ObjectId("ID_CLASS")
+});
+Remarque : Remplace ID_SUBJECT_MATHS, ID_TEACHER, ID_CLASS par les id correspondants.
+
+🔹 7. Insertion d'une note (Grade)
+javascript
+Copier
+Modifier
+db.grades.insertOne({
+  studentId: ObjectId("ID_STUDENT"),
+  courseId: ObjectId("ID_COURSE"),
+  score: 15,
+  maxScore: 20,
+  date: new Date()
+});
+🔹 8. Insertion d'un emploi du temps (Schedule)
+javascript
+Copier
+Modifier
+db.schedules.insertOne({
+  classId: ObjectId("ID_CLASS"),
+  courseId: ObjectId("ID_COURSE"),
+  day: "Lundi",
+  startTime: "08:00",
+  endTime: "10:00"
+});
+🔹 9. Insertion d'une présence (Attendance)
+javascript
+Copier
+Modifier
+db.attendances.insertOne({
+  studentId: ObjectId("ID_STUDENT"),
+  courseId: ObjectId("ID_COURSE"),
+  date: new Date(),
+  status: "Présent"
+});
+🔹 10. Insertion des frais de scolarité (Fee)
+javascript
+Copier
+Modifier
+db.fees.insertOne({
+  studentId: ObjectId("ID_STUDENT"),
+  amount: 500,
+  paidAmount: 200,
+  dueDate: new Date("2024-06-30"),
+  status: "Partiellement payé",
+  paymentHistory: [
+    {
+      amountPaid: 200,
+      paymentDate: new Date(),
+      paymentMethod: "Carte bancaire"
+    }
+  ]
+});
+
+
+j'ai le schema user suivant
+
+const UserSchema = new mongoose.Schema({
+    userId: { type: Number, unique: true },
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, enum: ["admin", "teacher", "student", "parent", "staff"], default: "student" }
+  });
+et schoolUser
+const SchoolUserSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  school: { type: mongoose.Schema.Types.ObjectId, ref: "School", required: true },
+  role: { type: String, enum: ["admin", "teacher", "student", "parent", "staff"], required: true }
+});
+merci de donner les implementation routes pour ses deux schema en tenir compte le model school

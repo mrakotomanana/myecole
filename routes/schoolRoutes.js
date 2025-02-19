@@ -2,30 +2,34 @@ const express = require('express');
 const router = express.Router();
 const School = require('../models/School');
 
-router.get("/", async function(req, res) {
-    // res.json({ message : 'shool ok get ' + req.url});
-    try {
-        const schools = await School.find();
-        res.json(schools);
-      } catch (error) {
-        res.status(500).json({ error: error.message });
-      }
+router.get("/", async function (req, res) {
+  // res.json({ message : 'shool ok get ' + req.url});
+  try {
+    const schools = await School.find();
+    res.json(schools);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-router.get("/:id", async function(req, res) {
-    res.json({ message : 'shool ok get ' + req.params.id});
+router.get("/:id", async function (req, res) {
+  res.json({ message: 'shool ok get ' + req.params.id });
 });
 
-router.post('/', async function(req, res) {
-    // res.json({ message : 'shool ok post ' + req.url});
-    try {
-        const { name, slogan, address, phone } = req.body;
-        const newSchool = new School({ name, slogan, address, phone });
-        await newSchool.save();
-        res.status(201).json(newSchool);
-      } catch (error) {
-        res.status(500).json({ error: error.message });
-      }
+router.post('/', async function (req, res) {
+  // res.json({ message : 'shool ok post ' + req.url});
+  try {
+    const { name, slogan, address, phone } = req.body;
+    const newSchool = new School({ name, slogan, address, phone });
+    await newSchool.save();
+    res.status(201).json(newSchool);
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(400).json({ error: "Une école avec ce nom existe déjà." });
+    }
+    console.error("Erreur lors de l'insertion :", error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = router;

@@ -1,9 +1,8 @@
-const mongosse = require('mongoose');
+const mongoose = require("mongoose");
 
-const db = mongosse.createConnection('mongodb://127.0.0.1:27017/myecole');
+mongoose
+  .connect("mongodb://127.0.0.1:27017/myecole")
+  .then(() => console.log("Connected to MongoDB."))
+  .catch((error) => console.error("Erreur de connexion mongodb :", error));
 
-db.on('error', (error)=> { console.log('Erreur connection :: ' + error)});
-db.on('open', ()=> { console.log('Connected to MongoDB.')})
-db.on('disconnected', ()=> { console.log('Disconnected to MongoDB.')})
-
-module.exports = db;
+module.exports = mongoose;
